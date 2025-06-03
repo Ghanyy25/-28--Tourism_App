@@ -12,15 +12,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+
 
 public class App extends Application {
     
     private Stage primaryStage;
     private String selectedDestination = "";
+    private Wisata wisata;
     
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.wisata = new Wisata(this, primaryStage);
         
         showMainMenu();
     }
@@ -39,9 +43,21 @@ public class App extends Application {
         Button planningBtn = UIHelp.createMenuButton("📋 PLANNING", "Perencanaan Trip & Budget");
         Button exitBtn = UIHelp.createMenuButton("🚪 KELUAR", "Tutup Aplikasi");
         
-        tourismBtn.setOnAction(e -> UIHelp.showComingSoon("Wisata"));
-        hotelBtn.setOnAction(e -> UIHelp.showComingSoon("Hotel"));
-        planningBtn.setOnAction(e -> UIHelp.showComingSoon("Planning"));
+        tourismBtn.setOnAction(e -> wisata.show());
+        hotelBtn.setOnAction(e -> {
+            if (selectedDestination.isEmpty()) {
+                    UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
+                } else {
+                    UIHelp.showComingSoon("Hotel");
+                }
+            });
+        planningBtn.setOnAction(e -> {
+            if (selectedDestination.isEmpty()) {
+                    UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
+                } else {
+                    UIHelp.showComingSoon("Planning");
+                }
+            });
         exitBtn.setOnAction(e -> primaryStage.close());
         
         GridPane buttonGrid = new GridPane();

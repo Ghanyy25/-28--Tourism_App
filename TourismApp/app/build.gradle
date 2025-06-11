@@ -33,11 +33,11 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'tourismapp.App'
+    mainClass = 'java.tourismapp.App'
 }
 
 javafx{ 
-    version = "21" 
+    version = "24" 
     modules = ['javafx.controls'] 
 }
 

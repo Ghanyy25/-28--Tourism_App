@@ -19,13 +19,15 @@ public class App extends Application {
     private Stage primaryStage;
     private String selectedDestination = "";
     private Wisata wisata;
-    private Hotel hotel; 
+    private Hotel hotel;
+    private Planning planning; // ✅ Tambahkan deklarasi Planning
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.wisata = new Wisata(this, primaryStage);
-        this.hotel = new Hotel(this, primaryStage); 
+        this.hotel = new Hotel(this, primaryStage);
+        this.planning = new Planning(this, primaryStage); // ✅ Inisialisasi Planning
 
         showMainMenu();
     }
@@ -39,7 +41,7 @@ public class App extends Application {
         subtitleLabel.setFont(Font.font("Arial", 16));
         subtitleLabel.setTextFill(Color.GRAY);
 
-        Button tourismBtn = UIHelp.createMenuButton("🏝️ WISATA", "Jelajahi Destinasi Wisata");
+        Button tourismBtn = UIHelp.createMenuButton("🏝 WISATA", "Jelajahi Destinasi Wisata");
         Button hotelBtn = UIHelp.createMenuButton("🏨 HOTEL", "Cari & Booking Hotel");
         Button planningBtn = UIHelp.createMenuButton("📋 PLANNING", "Perencanaan Trip & Budget");
         Button exitBtn = UIHelp.createMenuButton("🚪 KELUAR", "Tutup Aplikasi");
@@ -50,7 +52,7 @@ public class App extends Application {
             if (selectedDestination.isEmpty()) {
                 UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
             } else {
-                hotel.show(); 
+                hotel.show();
             }
         });
 
@@ -58,7 +60,7 @@ public class App extends Application {
             if (selectedDestination.isEmpty()) {
                 UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
             } else {
-                UIHelp.showComingSoon("Planning");
+                planning.show(); // ✅ Sudah valid setelah deklarasi & inisialisasi
             }
         });
 

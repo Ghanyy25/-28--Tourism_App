@@ -37,12 +37,12 @@ public class Wisata {
         destinationDetails = new HashMap<>();
         
         destinationDetails.put("Pantai Kuta", 
-            "🏖️ PANTAI KUTA, BALI\n\n" +
+            "🏖 PANTAI KUTA, BALI\n\n" +
             "📍 Lokasi: Badung, Bali\n" +
             "⭐ Rating: 4.5/5\n" +
             "🌅 Terkenal dengan sunset yang menakjubkan\n" +
-            "🏄‍♂️ Aktivitas: Surfing, Beach Volleyball, Spa\n" +
-            "🍽️ Kuliner: Seafood segar, Nasi Ayam Kedewatan\n" +
+            "🏄‍♂ Aktivitas: Surfing, Beach Volleyball, Spa\n" +
+            "🍽 Kuliner: Seafood segar, Nasi Ayam Kedewatan\n" +
             "💰 Budget: Rp 300.000 - 1.500.000/hari\n\n" +
             "Pantai yang sangat populer di Bali dengan pasir putih halus dan ombak yang cocok untuk surfing pemula.");
             
@@ -50,9 +50,9 @@ public class Wisata {
             "🛕 CANDI BOROBUDUR, YOGYAKARTA\n\n" +
             "📍 Lokasi: Magelang, Jawa Tengah\n" +
             "⭐ Rating: 4.8/5\n" +
-            "🏛️ Candi Buddha terbesar di dunia\n" +
+            "🏛 Candi Buddha terbesar di dunia\n" +
             "🌅 Aktivitas: Sunrise tour, Fotografi, Cultural tour\n" +
-            "🍽️ Kuliner: Gudeg, Bakpia, Wedang Ronde\n" +
+            "🍽 Kuliner: Gudeg, Bakpia, Wedang Ronde\n" +
             "💰 Budget: Rp 200.000 - 800.000/hari\n\n" +
             "Warisan dunia UNESCO dengan arsitektur yang menakjubkan dan pemandangan sunrise yang memukau.");
             
@@ -62,17 +62,17 @@ public class Wisata {
             "⭐ Rating: 4.7/5\n" +
             "🌄 Pemandangan kaldera dan sunrise spektakuler\n" +
             "🚙 Aktivitas: Jeep tour, Hiking, Horseback riding\n" +
-            "🍽️ Kuliner: Rawon, Pecel, Tahu Tempe Penyet\n" +
+            "🍽 Kuliner: Rawon, Pecel, Tahu Tempe Penyet\n" +
             "💰 Budget: Rp 400.000 - 1.200.000/hari\n\n" +
             "Gunung berapi aktif dengan lanskap seperti planet Mars dan sunrise yang tak terlupakan.");
             
         destinationDetails.put("Danau Toba", 
-            "🏞️ DANAU TOBA, SUMATERA UTARA\n\n" +
+            "🏞 DANAU TOBA, SUMATERA UTARA\n\n" +
             "📍 Lokasi: Sumatera Utara\n" +
             "⭐ Rating: 4.6/5\n" +
             "🌊 Danau vulkanik terbesar di Indonesia\n" +
             "🛶 Aktivitas: Boat tour, Pulau Samosir, Budaya Batak\n" +
-            "🍽️ Kuliner: Ikan Mas Arsik, Saksang, Babi Panggang\n" +
+            "🍽 Kuliner: Ikan Mas Arsik, Saksang, Babi Panggang\n" +
             "💰 Budget: Rp 250.000 - 900.000/hari\n\n" +
             "Danau kaldera raksasa dengan Pulau Samosir di tengahnya, kaya akan budaya Batak.");
     }
@@ -150,7 +150,7 @@ public class Wisata {
         Button selectDestinationBtn = new Button("Pilih Destinasi Ini");
         selectDestinationBtn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");
         
-        Button backBtn = new Button("⬅️ Kembali ke Menu");
+        Button backBtn = new Button("⬅ Kembali ke Menu");
         backBtn.setOnAction(e -> mainApp.showMainMenu());
 
         destinationList.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {

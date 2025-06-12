@@ -174,7 +174,8 @@ public class Hotel {
             ImageView thumbnail = new ImageView();
             thumbnail.setFitWidth(140);
             thumbnail.setFitHeight(140);
-            thumbnail.setPreserveRatio(true);
+            thumbnail.setPreserveRatio(false);
+            thumbnail.setSmooth(true);
 
             try {
                 Image image = new Image(getClass().getResourceAsStream(path));

@@ -22,7 +22,6 @@ public class Wisata {
     private Stage primaryStage;
     private Map<String, String> destinationDetails;
     private Map<String, List<String>> destinationImages;
-    // private HBox thumbnailContainer;
     private ScrollPane thumbnailScrollPane;
     private GridPane thumbnailContainer;
     
@@ -80,7 +79,6 @@ public class Wisata {
     private void initializeDestinationImages() {
         destinationImages = new HashMap<>();
         
-        // Multiple images per destination
         destinationImages.put("Pantai Kuta", Arrays.asList(
             "/Kuta1.jpg",      
             "/Kuta2.jpg",
@@ -133,8 +131,8 @@ public class Wisata {
         thumbnailScrollPane = new ScrollPane(thumbnailContainer);
         thumbnailScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         thumbnailScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        thumbnailScrollPane.setPrefHeight(130);
-        thumbnailScrollPane.setMaxHeight(130);
+        thumbnailScrollPane.setPrefHeight(160);
+        thumbnailScrollPane.setMaxHeight(160);
         thumbnailScrollPane.setStyle(
             "-fx-background-color: white; " +
             "-fx-border-color: #cccccc; " +
@@ -143,7 +141,6 @@ public class Wisata {
             "-fx-background-radius: 4px;"
         );
         
-        // Create a label for photo caption
         Label photoLabel = new Label("📸 Galeri Foto (Klik untuk memperbesar)");
         photoLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #666666;");
 
@@ -157,8 +154,6 @@ public class Wisata {
             if (newVal != null) {
                 String details = getDestinationDetails(newVal);
                 detailArea.setText(details);
-                
-                // Load thumbnail images for selected destination
                 loadThumbnailImages(newVal);
             }
         });
@@ -177,7 +172,6 @@ public class Wisata {
         VBox leftPane = new VBox(new Label("Destinasi Wisata"), destinationList, selectDestinationBtn, backBtn);
         leftPane.setSpacing(10);
         
-        // Create VBox for photo section
         VBox photoSection = new VBox(photoLabel, thumbnailScrollPane);
         photoSection.setSpacing(5);
         photoSection.setPadding(new Insets(10, 10, 10, 10));
@@ -201,8 +195,8 @@ public class Wisata {
     private void loadThumbnailImages(String destination) {
         List<String> imageList = destinationImages.get(destination);
         thumbnailContainer.getChildren().clear();
-        thumbnailContainer.setVgap(10);  // Vertical gap between rows
-        thumbnailContainer.setHgap(10);  // Horizontal gap between columns
+        thumbnailContainer.setVgap(10);
+        thumbnailContainer.setHgap(10);
         thumbnailContainer.setPadding(new Insets(5));
 
         if (imageList != null && !imageList.isEmpty()) {
@@ -210,17 +204,14 @@ public class Wisata {
                 String imagePath = imageList.get(i);
                 ImageView thumbnail = createThumbnail(imagePath, i + 1);
 
-                // Add click event to enlarge image
                 final String finalImagePath = imagePath;
                 thumbnail.setOnMouseClicked(e -> showEnlargedImage(finalImagePath, destination));
 
-                // Add to GridPane with specific row and column
-                int row = i / 3;  // Calculate the row number (0-based)
-                int col = i % 3;  // Calculate the column number (0-based)
-                thumbnailContainer.add(thumbnail, col, row);  // Add thumbnail to GridPane at (col, row)
+                int row = i / 3;
+                int col = i % 3;
+                thumbnailContainer.add(thumbnail, col, row);
             }
         } else {
-            // Show "no images" placeholder
             Label noImageLabel = new Label("📷 Tidak ada foto tersedia");
             noImageLabel.setStyle("-fx-text-fill: #999999; -fx-font-style: italic;");
             thumbnailContainer.getChildren().add(noImageLabel);
@@ -231,10 +222,9 @@ public class Wisata {
         ImageView thumbnail = new ImageView();
         thumbnail.setFitWidth(140);
         thumbnail.setFitHeight(140);
-        thumbnail.setPreserveRatio(true);
+        thumbnail.setPreserveRatio(false);
         thumbnail.setSmooth(true);
         
-        // Styling for thumbnail
         thumbnail.setStyle(
             "-fx-border-color: #dddddd; " +
             "-fx-border-width: 1px; " +
@@ -242,7 +232,6 @@ public class Wisata {
             "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 1);"
         );
         
-        // Add hover effect
         thumbnail.setOnMouseEntered(e -> {
             thumbnail.setStyle(
                 "-fx-border-color: #2196F3; " +
@@ -263,15 +252,10 @@ public class Wisata {
         });
         
         try {
-            // Try to load image from resources
             Image image = new Image(getClass().getResourceAsStream(imagePath));
-            
-            // If image not found in resources, try loading from file system
             if (image.isError()) {
                 image = new Image("file:" + imagePath);
             }
-            
-            // If still not found, show placeholder
             if (image.isError()) {
                 createPlaceholderThumbnail(thumbnail, imageNumber);
             } else {
@@ -285,7 +269,6 @@ public class Wisata {
     }
     
     private void createPlaceholderThumbnail(ImageView thumbnail, int imageNumber) {
-        // You could set a default "no image" thumbnail here
         thumbnail.setImage(null);
         System.out.println("Image " + imageNumber + " not found");
     }
@@ -303,14 +286,10 @@ public class Wisata {
         enlargedImage.setSmooth(true);
         
         try {
-            // Try to load image from resources
             Image image = new Image(getClass().getResourceAsStream(imagePath));
-            
-            // If image not found in resources, try loading from file system
             if (image.isError()) {
                 image = new Image("file:" + imagePath);
             }
-            
             if (!image.isError()) {
                 enlargedImage.setImage(image);
             }

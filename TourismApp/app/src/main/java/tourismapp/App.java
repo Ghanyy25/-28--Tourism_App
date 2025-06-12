@@ -20,15 +20,14 @@ public class App extends Application {
     private String selectedDestination = "";
     private Wisata wisata;
     private Hotel hotel;
-    private Planning planning; // ✅ Tambahkan deklarasi Planning
+    private Planning planning; 
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.wisata = new Wisata(this, primaryStage);
         this.hotel = new Hotel(this, primaryStage);
-        this.planning = new Planning(this, primaryStage); // ✅ Inisialisasi Planning
-
+        this.planning = new Planning(this, primaryStage);
         showMainMenu();
     }
 
@@ -60,7 +59,7 @@ public class App extends Application {
             if (selectedDestination.isEmpty()) {
                 UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
             } else {
-                planning.show(); // ✅ Sudah valid setelah deklarasi & inisialisasi
+                planning.show();
             }
         });
 

@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private Stage primaryStage;
-    private String selectedDestination = "";
+    private String Destination = "";
     private Wisata wisata;
     private Hotel hotel;
     private Planning planning; 
@@ -40,24 +40,24 @@ public class App extends Application {
         subtitleLabel.setFont(Font.font("Arial", 16));
         subtitleLabel.setTextFill(Color.GRAY);
 
-        Button tourismBtn = UIHelp.createMenuButton("🏝 WISATA", "Jelajahi Destinasi Wisata");
-        Button hotelBtn = UIHelp.createMenuButton("🏨 HOTEL", "Cari & Booking Hotel");
+        Button tourismBtn = UIHelp.createMenuButton("🏝 WISATA", "Destinasi Wisata");
+        Button hotelBtn = UIHelp.createMenuButton("🏨 HOTEL", "Cari Hotel Sekitar Destinasi");
         Button planningBtn = UIHelp.createMenuButton("📋 PLANNING", "Perencanaan Trip & Budget");
         Button exitBtn = UIHelp.createMenuButton("🚪 KELUAR", "Tutup Aplikasi");
 
         tourismBtn.setOnAction(e -> wisata.show());
 
         hotelBtn.setOnAction(e -> {
-            if (selectedDestination.isEmpty()) {
-                UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
+            if (Destination.isEmpty()) {
+                UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata dahulu!", Alert.AlertType.WARNING);
             } else {
                 hotel.show();
             }
         });
 
         planningBtn.setOnAction(e -> {
-            if (selectedDestination.isEmpty()) {
-                UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata terlebih dahulu!", Alert.AlertType.WARNING);
+            if (Destination.isEmpty()) {
+                UIHelp.showAlert("Informasi", "Silakan pilih destinasi wisata dahulu!", Alert.AlertType.WARNING);
             } else {
                 planning.show();
             }
@@ -77,8 +77,8 @@ public class App extends Application {
         buttonGrid.add(exitBtn, 1, 1);
 
         Label destinationInfo = new Label();
-        if (!selectedDestination.isEmpty()) {
-            destinationInfo.setText("📍 Destinasi Terpilih: " + selectedDestination);
+        if (!Destination.isEmpty()) {
+            destinationInfo.setText("📍 Destinasi Terpilih: " + Destination);
             destinationInfo.setFont(Font.font("Arial", FontWeight.BOLD, 14));
             destinationInfo.setTextFill(Color.DARKGREEN);
         }
@@ -88,7 +88,7 @@ public class App extends Application {
         mainLayout.setSpacing(20);
         mainLayout.setPadding(new Insets(40));
 
-        if (!selectedDestination.isEmpty()) {
+        if (!Destination.isEmpty()) {
             mainLayout.getChildren().addAll(titleLabel, subtitleLabel, destinationInfo, buttonGrid);
         } else {
             mainLayout.getChildren().addAll(titleLabel, subtitleLabel, buttonGrid);
@@ -103,15 +103,15 @@ public class App extends Application {
     }
 
     public String getSelectedDestination() {
-        return selectedDestination;
+        return Destination;
     }
 
     public void setSelectedDestination(String destination) {
-        this.selectedDestination = destination;
+        this.Destination = destination;
     }
 
     public boolean hasSelectedDestination() {
-        return !selectedDestination.isEmpty();
+        return !Destination.isEmpty();
     }
 
     public static void main(String[] args) {

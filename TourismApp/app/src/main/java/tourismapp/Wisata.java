@@ -28,11 +28,11 @@ public class Wisata {
     public Wisata(App mainApp, Stage primaryStage) {
         this.mainApp = mainApp;
         this.primaryStage = primaryStage;
-        initializeDestinationData();
-        initializeDestinationImages();
+        DestinationData();
+        DestinationImages();
     }
     
-    private void initializeDestinationData() {
+    private void DestinationData() {
         destinationDetails = new HashMap<>();
         
         destinationDetails.put("Pantai Kuta", 
@@ -76,7 +76,7 @@ public class Wisata {
             "Danau kaldera raksasa dengan Pulau Samosir di tengahnya, kaya akan budaya Batak.");
     }
     
-    private void initializeDestinationImages() {
+    private void DestinationImages() {
         destinationImages = new HashMap<>();
         
         destinationImages.put("Pantai Kuta", Arrays.asList(
@@ -117,8 +117,8 @@ public class Wisata {
     public void show() {
         String[] destinations = {"Pantai Kuta", "Candi Borobudur", "Gunung Bromo", "Danau Toba"};
 
-        ListView<String> destinationList = new ListView<>();
-        destinationList.getItems().addAll(destinations);
+        ListView<String> listdestinasi = new ListView<>();
+        listdestinasi.getItems().addAll(destinations);
 
         TextArea detailArea = new TextArea();
         detailArea.setEditable(false);
@@ -141,7 +141,7 @@ public class Wisata {
             "-fx-background-radius: 4px;"
         );
         
-        Label photoLabel = new Label("📸 Galeri Foto (Klik untuk memperbesar)");
+        Label photoLabel = new Label("📸 Galeri Foto ");
         photoLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #666666;");
 
         Button selectDestinationBtn = new Button("Pilih Destinasi Ini");
@@ -150,7 +150,7 @@ public class Wisata {
         Button backBtn = new Button("⬅ Kembali ke Menu");
         backBtn.setOnAction(e -> mainApp.showMainMenu());
 
-        destinationList.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+        listdestinasi.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 String details = getDestinationDetails(newVal);
                 detailArea.setText(details);
@@ -159,7 +159,7 @@ public class Wisata {
         });
 
         selectDestinationBtn.setOnAction(e -> {
-            String selected = destinationList.getSelectionModel().getSelectedItem();
+            String selected = listdestinasi.getSelectionModel().getSelectedItem();
             if (selected != null) {
                 mainApp.setSelectedDestination(selected);
                 UIHelp.showAlert("Sukses", "Destinasi " + selected + " berhasil dipilih!\nSekarang Anda bisa mengakses semua fitur.", Alert.AlertType.INFORMATION);
@@ -169,7 +169,7 @@ public class Wisata {
             }
         });
 
-        VBox leftPane = new VBox(new Label("Destinasi Wisata"), destinationList, selectDestinationBtn, backBtn);
+        VBox leftPane = new VBox(new Label("Destinasi Wisata"), listdestinasi, selectDestinationBtn, backBtn);
         leftPane.setSpacing(10);
         
         VBox photoSection = new VBox(photoLabel, thumbnailScrollPane);
@@ -205,7 +205,7 @@ public class Wisata {
                 ImageView thumbnail = createThumbnail(imagePath, i + 1);
 
                 final String finalImagePath = imagePath;
-                thumbnail.setOnMouseClicked(e -> showEnlargedImage(finalImagePath, destination));
+                thumbnail.setOnMouseClicked(e -> showImage(finalImagePath, destination));
 
                 int row = i / 3;
                 int col = i % 3;
@@ -273,7 +273,7 @@ public class Wisata {
         System.out.println("Image " + imageNumber + " not found");
     }
     
-    private void showEnlargedImage(String imagePath, String destinationName) {
+    private void showImage(String imagePath, String destinationName) {
         Stage imageStage = new Stage();
         imageStage.setTitle("📸 " + destinationName + " - Foto Detail");
         imageStage.initModality(Modality.APPLICATION_MODAL);

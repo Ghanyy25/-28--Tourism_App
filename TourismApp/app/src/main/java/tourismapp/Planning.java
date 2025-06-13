@@ -116,7 +116,7 @@ public class Planning {
         root.setCenter(tabPane);
         root.setBottom(buttonBox);
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 550);
         primaryStage.setTitle("Tourism App - Planning");
         primaryStage.setScene(scene);
         primaryStage.show();

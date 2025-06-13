@@ -96,7 +96,7 @@ public class App extends Application {
 
         mainLayout.setStyle("-fx-background: linear-gradient(to bottom, #e3f2fd, #bbdefb);");
 
-        Scene scene = new Scene(mainLayout, 700, 600);
+        Scene scene = new Scene(mainLayout, 800, 550);
         primaryStage.setTitle("Tourism App - Menu Utama");
         primaryStage.setScene(scene);
         primaryStage.show();
